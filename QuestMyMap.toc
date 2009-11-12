@@ -4,7 +4,7 @@
 ## Version: 1.0
 ## X-eMail: xconstruct@gmail.com
 ## X-Website: http://www.xconstruct.net
-## Notes: Objectives on map - without resizing!
+## Notes: Transparent layout and and quest map tweaks.
 
 resize.lua
 modifiedClicks.lua
