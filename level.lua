@@ -15,7 +15,7 @@ end)
 
 hooksecurefunc("WorldMapQuestPOI_SetTooltip", function(self, questLogIndex)
 	WorldMapTooltipTextLeft1:SetText(tagMe(questLogIndex))
-	local color = GetQuestDifficultyColor(questLogIndex)
+	local color = GetQuestDifficultyColor(select(2, GetQuestLogTitle(questLogIndex)))
 	WorldMapTooltipTextLeft1:SetTextColor(color.r, color.g, color.b)
 	WorldMapTooltip:AppendText("")
 end)

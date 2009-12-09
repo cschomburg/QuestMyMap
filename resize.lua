@@ -2,7 +2,6 @@ local dummy = function() end
 
 WorldMapQuestScrollFrame:ClearAllPoints()
 WorldMapQuestScrollFrame:SetPoint("TOPRIGHT", WorldMapDetailFrame, "TOPRIGHT", -20, 0)
-WorldMapQuestScrollFrame:SetFrameLevel(3)
 
 local bg = WorldMapQuestScrollFrame:CreateTexture(nil, "BACKGROUND")
 bg:SetPoint("TOPLEFT")
@@ -40,6 +39,7 @@ WorldMapFrame_AdjustMapAndQuestList = function()
 	end
 	WorldMapQuestDetailScrollFrame:Hide()
 	WorldMapQuestRewardScrollFrame:Hide()
+	WorldMapQuestScrollFrame:SetFrameLevel(100)
 end
 
 hooksecurefunc("WorldMap_ToggleSizeUp", adjustToBig)
