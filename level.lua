@@ -1,6 +1,6 @@
 local function tagMe(id)
 	local name, lvl = GetQuestLogTitle(id)
-	return ("[%d] %s"):format(lvl, name)
+	return name and lvl and ("[%d] %s"):format(lvl, name) or ""
 end
 
 hooksecurefunc("WorldMapFrame_UpdateQuests", function()

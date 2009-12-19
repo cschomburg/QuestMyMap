@@ -1,15 +1,14 @@
 local function handleModified(self, button)
-	if(IsModifiedClick("CHATLINK") and ChatFrameEditBox:IsVisible()) then
-		local questLink = GetQuestLink(self.questLogIndex)
-		if(questLink) then
-			ChatEdit_InsertLink(questLink)
-		end
+	local index = self.questLogIndex
+
+	if(IsModifiedClick()) then
+		QuestLogTitleButton_OnClick(self, _G["QuestLogScrollFrameButton"..index])
+		local questLink = GetQuestLink(index)
 		return true
 	end
 	if(button == "RightButton") then
-		QuestLogFrame:Show()
-		QuestLog_SetSelection(self.questLogIndex)
-		WorldMapFrame:Hide()
+		QuestLog_SetSelection(index)
+		QuestLogDetailFrame:Show()
 		return true
 	end
 end
