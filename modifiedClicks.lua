@@ -2,8 +2,7 @@ local function handleModified(self, button)
 	local index = self.questLogIndex
 
 	if(IsModifiedClick()) then
-		QuestLogTitleButton_OnClick(self, _G["QuestLogScrollFrameButton"..index])
-		local questLink = GetQuestLink(index)
+		QuestLogTitleButton_OnClick(_G["QuestLogScrollFrameButton"..index], button)
 		return true
 	end
 	if(button == "RightButton") then
