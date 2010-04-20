@@ -1,5 +1,9 @@
 local dummy = function() end
 
+WORLDMAP_QUESTLIST_SIZE = WORLDMAP_FULLMAP_SIZE
+WORLDMAP_SETTINGS.size = WORLDMAP_QUESTLIST_SIZE
+WorldMapFrame_SetPOIMaxBounds()
+
 WorldMapQuestScrollFrame:ClearAllPoints()
 WorldMapQuestScrollFrame:SetPoint("TOPRIGHT", WorldMapDetailFrame, "TOPRIGHT", -20, 0)
 
@@ -10,36 +14,15 @@ bg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
 bg:SetVertexColor(0, 0, 0)
 bg:SetAlpha(0.5)
 
-local init = true
+for k,v in pairs{
+	WorldMapQuestRewardScrollFrame,
+	WorldMapQuestDetailScrollFrame,
+} do v:Hide(); v.Show = v.Hide end
 
-local function adjustToBig()
-	WorldMapFrame.bigMap = true
-	WorldMapFrame.scale = WORLDMAP_RATIO_FULL
-	WorldMapDetailFrame:SetScale(WORLDMAP_RATIO_FULL)
-	WorldMapButton:SetScale(WORLDMAP_RATIO_FULL)
+hooksecurefunc("WorldMapFrame_SetQuestMapView", function()
+	WorldMapQuestScrollFrame:SetFrameLevel(30)
 	WorldMapDetailFrame:SetPoint("TOPLEFT", WorldMapPositioningGuide, "TOP", -502, -69)
-	WorldMapPOIFrame.ratio = 1
-	WorldMapBlobFrame:SetScale(WORLDMAP_RATIO_FULL);
-	init = nil
-end
-
-WorldMapFrame_AdjustMapAndQuestList = function()
-	if(WorldMapFrame.sizedDown) then return end
-
-	if(init) then adjustToBig() end
-
-	if(WatchFrame.showObjectives and WorldMapFrame.numQuests > 0) then
-		WorldMapQuestScrollFrame:Show()
-		WorldMapBlobFrame:Show()
-		WorldMapPOIFrame:Show()
-	else
-		WorldMapQuestScrollFrame:Hide()
-		WorldMapBlobFrame:Hide()
-		WorldMapPOIFrame:Hide()
+	for i = NUM_WORLDMAP_DETAIL_TILES + 1, NUM_WORLDMAP_DETAIL_TILES + NUM_WORLDMAP_PATCH_TILES do
+		_G["WorldMapFrameTexture"..i]:Show()
 	end
-	WorldMapQuestDetailScrollFrame:Hide()
-	WorldMapQuestRewardScrollFrame:Hide()
-	WorldMapQuestScrollFrame:SetFrameLevel(100)
-end
-
-hooksecurefunc("WorldMap_ToggleSizeUp", adjustToBig)
+end)

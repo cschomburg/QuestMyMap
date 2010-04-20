@@ -6,7 +6,7 @@ end
 hooksecurefunc("WorldMapFrame_UpdateQuests", function()
 	i = 1
 	local frame = _G["WorldMapQuestFrame"..i]
-	while(frame) do
+	while(_G["WorldMapQuestFrame"..i]) do
 		frame.title:SetText(tagMe(frame.questLogIndex))
 		i = i+1
 		frame = _G["WorldMapQuestFrame"..i]
@@ -15,7 +15,10 @@ end)
 
 hooksecurefunc("WorldMapQuestPOI_SetTooltip", function(self, questLogIndex)
 	WorldMapTooltipTextLeft1:SetText(tagMe(questLogIndex))
-	local color = GetQuestDifficultyColor(select(2, GetQuestLogTitle(questLogIndex)))
-	WorldMapTooltipTextLeft1:SetTextColor(color.r, color.g, color.b)
 	WorldMapTooltip:AppendText("")
+
+	if(MAP_QUEST_DIFFICULTY == "1") then
+		local color = GetQuestDifficultyColor(select(2, GetQuestLogTitle(questLogIndex)))
+		WorldMapTooltipTextLeft1:SetTextColor(color.r, color.g, color.b)
+	end
 end)
