@@ -63,7 +63,5 @@ sizerBG:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
 sizerBG:SetVertexColor(0, 0, 0)
 sizerBG:SetAlpha(0.7)
 
-gSizerBG = sizerBG
-
 sizer:SetScript("OnEnter", function() sizerBG:SetVertexColor(.12, .56, 1) end)
 sizer:SetScript("OnLeave", function() sizerBG:SetVertexColor(0, 0, 0) end)
