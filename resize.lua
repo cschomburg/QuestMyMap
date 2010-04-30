@@ -25,7 +25,7 @@ for k,v in pairs{
 } do v:Hide(); v.Show = v.Hide end
 
 hooksecurefunc("WorldMapFrame_SetQuestMapView", function()
-	questList:SetFrameLevel(30)
+	questList:SetFrameLevel(WorldMapButton:GetFrameLevel()+1)
 	WorldMapDetailFrame:SetPoint("TOPLEFT", WorldMapPositioningGuide, "TOP", -502, -69)
 	for i = NUM_WORLDMAP_DETAIL_TILES + 1, NUM_WORLDMAP_DETAIL_TILES + NUM_WORLDMAP_PATCH_TILES do
 		_G["WorldMapFrameTexture"..i]:Show()
